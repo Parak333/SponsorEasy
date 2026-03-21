@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Verify Services Code Quality",
+  "description": "Checks TypeScript service files for proper error handling, no hardcoded API keys, and try-catch blocks in async functions",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/services/*.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the saved file and verify:\n1. All TinyFish API calls include proper error handling (check for timeout handling, failed status handling, and network error handling)\n2. No API keys are hardcoded in the file (API keys should come from environment variables only)\n3. All async functions have try-catch blocks to handle errors gracefully\n\nIf any issues are found, provide specific feedback on what needs to be fixed. If everything looks good, confirm that the code follows best practices."
+  }
+}
